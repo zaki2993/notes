@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "id": "zakarch.notepad",
+  "name": "Notepad",
+  "version": "1.0.0",
+  "author": "zakarch",
+  "license": "MIT",
+  "description": "Simple, elegant note-taking widget. Add, view, copy, and delete notes.",
+  "kinds": ["service", "bar-widget"],
+  "keepLoaded": true,
+  "entryPoints": {
+    "service": "Service.qml",
+    "barWidget": "BarWidget.qml"
+  },
+  "barWidget": {
+    "displayName": "Notepad",
+    "description": "Quick access to your notes",
+    "category": "Productivity",
+    "defaultSection": "right",
+    "allowMultiple": false
+  }
+}
