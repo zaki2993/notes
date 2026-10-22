@@ -53,6 +53,14 @@ BarWidget {
     anchors.fill: parent
     bar: root.bar
     text: "󰠮"
+    iconComponent: noteIcon
+    Component {
+      id: noteIcon
+      NoteIcon {
+        count: root.svc ? root.svc.noteCount : 0
+        color: button.foreground
+      }
+    }
     tooltipText: "Notes" + (root.svc && root.svc.noteCount ? " · " + root.svc.noteCount : "")
     onPressed: function(b) { root.togglePanel() }
   }
