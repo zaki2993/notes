@@ -48,14 +48,11 @@ BarWidget {
     function toggle(): void { root.togglePanel() }
   }
 
-  WidgetButton {
+  BarIconButton {
     id: button
     anchors.fill: parent
     bar: root.bar
     text: "󰠮"
-    fontSize: Style.bar.iconFont
-    horizontalMargin: 6
-    verticalPadding: 5
     tooltipText: "Notes" + (root.svc && root.svc.noteCount ? " · " + root.svc.noteCount : "")
     onPressed: function(b) { root.togglePanel() }
   }
