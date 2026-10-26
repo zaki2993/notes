@@ -1,7 +1,7 @@
 import QtQuick
 import QtQuick.Shapes
 
-// Bar glyph: a page with one written line per note (up to three).
+// Bar glyph: a sticky note with a folded corner and one written line per note (up to three).
 Item {
   id: root
 
@@ -9,7 +9,7 @@ Item {
   property color color: "#888888"
 
   readonly property real s: width / 16
-  readonly property var lineEnds: [11, 11, 9]
+  readonly property var lineEnds: [11.5, 11.5, 8]
 
   Shape {
     anchors.fill: parent
@@ -18,7 +18,22 @@ Item {
       strokeColor: root.color
       strokeWidth: 1.4 * root.s
       fillColor: "transparent"
-      PathRectangle { x: 3 * root.s; y: 1.5 * root.s; width: 10 * root.s; height: 13 * root.s; radius: 2 * root.s }
+      joinStyle: ShapePath.RoundJoin
+      capStyle: ShapePath.RoundCap
+      startX: 4 * root.s; startY: 2 * root.s
+      PathLine { x: 12 * root.s; y: 2 * root.s }
+      PathQuad { x: 14 * root.s; y: 4 * root.s; controlX: 14 * root.s; controlY: 2 * root.s }
+      PathLine { x: 14 * root.s; y: 10 * root.s }
+      PathLine { x: 10 * root.s; y: 14 * root.s }
+      PathLine { x: 4 * root.s; y: 14 * root.s }
+      PathQuad { x: 2 * root.s; y: 12 * root.s; controlX: 2 * root.s; controlY: 14 * root.s }
+      PathLine { x: 2 * root.s; y: 4 * root.s }
+      PathQuad { x: 4 * root.s; y: 2 * root.s; controlX: 2 * root.s; controlY: 2 * root.s }
+      // folded corner
+      PathMove { x: 14 * root.s; y: 10 * root.s }
+      PathLine { x: 11.5 * root.s; y: 10 * root.s }
+      PathQuad { x: 10 * root.s; y: 11.5 * root.s; controlX: 10 * root.s; controlY: 10 * root.s }
+      PathLine { x: 10 * root.s; y: 14 * root.s }
     }
   }
 
@@ -26,9 +41,9 @@ Item {
     model: 3
     Rectangle {
       required property int index
-      x: 5.5 * root.s
-      y: (4.6 + index * 2.6) * root.s
-      width: (root.lineEnds[index] - 5.5) * root.s
+      x: 4.5 * root.s
+      y: (4.8 + index * 2.6) * root.s
+      width: (root.lineEnds[index] - 4.5) * root.s
       height: 1.3 * root.s
       radius: height / 2
       color: root.color
